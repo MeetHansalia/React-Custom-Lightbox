@@ -7,13 +7,13 @@ ReactImageVideoLightbox is a React component that displays a lightbox to view im
 To install the component, run the following command:
 
 ```sh
-npm install react-image-video-lightbox
+npm install react-custom-lightbox
 ```
 
 or
 
 ```sh
-yarn add react-image-video-lightbox
+yarn add react-custom-lightbox
 ```
 
 ## Dependencies
@@ -43,7 +43,7 @@ yarn add react-image-video-lightbox
 
 ```jsx
 import React from "react";
-import ReactImageVideoLightbox from "react-image-video-lightbox";
+import ReactImageVideoLightbox from "react-custom-lightbox";
 
 const mediaData = [
   { type: "photo", url: "https://example.com/image1.jpg", altTag: "Image 1" },

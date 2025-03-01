@@ -1,6 +1,6 @@
 {
   "name": "react-custom-lightbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React-Custom-Lightbox is a React component that displays a lightbox to view images and videos. It supports image , navigation, video autoplay, and thumbnail previews. This component is useful for creating a gallery or media viewer within your React application.",
   "main": "index.js",
   "scripts": {
