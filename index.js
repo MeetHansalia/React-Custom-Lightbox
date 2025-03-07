@@ -13,8 +13,8 @@ const MOBILE_ICON_SIZE = 35;
 const DESKTOP_ICON_SIZE = 50;
 
 const ReactImageVideoLightbox = ({
-    startIndex,
-    data,
+    startIndex = 0,
+    data = [],
     showResourceCount,
     onCloseCallback,
     onNavigationCallback,
@@ -27,6 +27,10 @@ const ReactImageVideoLightbox = ({
     customCloseIcon, // Optional custom close icon
     customLeftArrowIcon,// Optional custom left arrow icon
     customRightArrowIcon,
+    showCloseButton = true,
+    bulletColor = "gray",
+    activeBulletColor = 'white',
+    showIndicators = true
 }) => {
     const [state, setState] = useState({
         x: INITIAL_X,
@@ -176,25 +180,26 @@ const ReactImageVideoLightbox = ({
             )}
 
             {/* Close Button */}
-            <div
-                style={{
-                    position: 'absolute',
-                    top: '10px',
-                    right: '10px',
-                    color: '#FFFFFF',
-                    cursor: 'pointer',
-                    fontSize: `${state.iconSize * 0.8}px`,
-                    zIndex: 2
-                }}
-                // onClick={onCloseCallback}
-                onClick={handleClose}>
-                {customCloseIcon ? customCloseIcon : (
-                    <svg xmlns='http://www.w3.org/2000/svg' height='36px' viewBox='0 0 24 24' width='36px' fill='#FFFFFF'>
-                        <path d='M0 0h24v24H0z' fill='none' />
-                        <path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z' />
-                    </svg>
-                )}
-            </div>
+            {showCloseButton && (
+                <div
+                    style={{
+                        position: 'absolute',
+                        top: '10px',
+                        right: '10px',
+                        color: '#FFFFFF',
+                        cursor: 'pointer',
+                        fontSize: `${state.iconSize * 0.8}px`,
+                        zIndex: 2
+                    }}
+                    onClick={handleClose}>
+                    {customCloseIcon ? customCloseIcon : (
+                        <svg xmlns='http://www.w3.org/2000/svg' height='36px' viewBox='0 0 24 24' width='36px' fill='#FFFFFF'>
+                            <path d='M0 0h24v24H0z' fill='none' />
+                            <path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z' />
+                        </svg>
+                    )}
+                </div>
+            )}
 
             {/* Navigation Arrows */}
             {state.index > 0 && (
@@ -240,7 +245,8 @@ const ReactImageVideoLightbox = ({
             {/* Main Content */}
             {resources[state.index]}
 
-            {showThumbnails && (
+            {/* Show Thumbnails */}
+            {showIndicators && showThumbnails && (
                 <div
                     style={{
                         position: 'absolute',
@@ -283,6 +289,37 @@ const ReactImageVideoLightbox = ({
                                 />
                             )}
                         </div>
+                    ))}
+                </div>
+            )}
+
+            {/* Hidden Thumbnails */}
+            {showIndicators && !showThumbnails && (
+                <div
+                    style={{
+                        position: 'absolute',
+                        bottom: '10px',
+                        display: 'flex',
+                        gap: '8px',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        zIndex: 9999,
+                        paddingBottom: '10px',
+                    }}
+                >
+                    {data.map((_, i) => (
+                        <div
+                            key={i}
+                            onClick={() => setState((prevState) => ({ ...prevState, index: i, loading: true }))}
+                            style={{
+                                width: '10px',
+                                height: '10px',
+                                borderRadius: '50%',
+                                backgroundColor: state.index === i ? activeBulletColor : bulletColor,
+                                cursor: 'pointer',
+                                transition: 'background-color 0.3s ease',
+                            }}
+                        />
                     ))}
                 </div>
             )}

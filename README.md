@@ -1,6 +1,6 @@
 # ReactImageVideoLightbox
 
-ReactImageVideoLightbox is a React component that displays a lightbox to view images and videos. It supports image , navigation, video autoplay, and thumbnail previews. This component is useful for creating a gallery or media viewer within your React application.
+ReactImageVideoLightbox is a React component that displays a lightbox to view images and videos. It supports image navigation, video autoplay, and thumbnail previews. This component is useful for creating a gallery or media viewer within your React application.
 
 ## Installation
 
@@ -38,6 +38,10 @@ yarn add react-custom-lightbox
 | `customCloseIcon`      | ReactNode | `null`        | Custom close icon to replace the default close button.                                                                                                                      |
 | `customLeftArrowIcon`  | ReactNode | `null`        | Custom left arrow icon for navigation.                                                                                                                                      |
 | `customRightArrowIcon` | ReactNode | `null`        | Custom right arrow icon for navigation.                                                                                                                                     |
+| `showCloseButton`      | boolean   | `true`        | If `true`, displays a close icon in the lightbox; if `false`, the close icon is hidden.                                                                                     |
+| `showIndicators`       | boolean   | `true`        | If `false`, hides both bullet points and thumbnails from the UI.                                                                                                            |
+| `activeBulletColor`    | string    | `white`       | Defines the color of the active bullet point.                                                                                                                               |
+| `bulletColor`          | string    | `gray`        | Defines the color of inactive bullet points.                                                                                                                                |
 
 ## Example Usage
 
@@ -76,6 +80,10 @@ const YourComponent = () => {
       customCloseIcon={<svg>...</svg>} // Optional custom close icon
       customLeftArrowIcon={<svg>...</svg>} // Optional custom left arrow icon
       customRightArrowIcon={<svg>...</svg>} // Optional custom right arrow icon
+      showCloseButton={true}
+      activeBulletColor="white"
+      bulletColor="gray"
+      showIndicators={true}
     />
   );
 };
