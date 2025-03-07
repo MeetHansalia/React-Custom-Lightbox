@@ -1,4 +1,4 @@
-// Developed By Harshil Kaneria
+// Developed By Meet Hansalia
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import * as utils from './LightBox';
